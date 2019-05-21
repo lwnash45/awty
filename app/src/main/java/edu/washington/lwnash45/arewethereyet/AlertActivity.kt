@@ -16,9 +16,8 @@ class AlertActivity : BroadcastReceiver() {
         Log.i("working", "alarm recieved")
         val number = intent?.getStringExtra("number")
         val message = intent?.getStringExtra("message")
-        val phoneNum = intent!!.getStringExtra("phoneNum")
         Toast.makeText(context, "Texting{$number}: $message", Toast.LENGTH_SHORT).show()
-        SmsManager.getDefault().sendTextMessage(phoneNum, null, message, null, null)
+        SmsManager.getDefault().sendTextMessage(number, null, message, null, null)
 
     }
 }
