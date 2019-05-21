@@ -15,6 +15,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import android.Manifest
+import android.content.pm.PackageManager
+import android.support.v4.app.ActivityCompat
+import android.telephony.SmsManager
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         var message: EditText = findViewById(R.id.message) as EditText
         var interval: EditText = findViewById(R.id.interval) as EditText
 
+        if (checkCallingOrSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS), 1)
+        }
 
         var startBtn: Button = findViewById(R.id.startBtn) as Button
         startBtn.setOnClickListener {
